@@ -22,9 +22,9 @@ pub struct AuthData {
 pub type LoggedUser = SlimUser;
 
 impl FromRequest for LoggedUser {
-    type Config = ();
     type Error = Error;
     type Future = Ready<Result<LoggedUser, Error>>;
+    type Config = ();
 
     fn from_request(req: &HttpRequest, pl: &mut Payload) -> Self::Future {
         if let Ok(identity) = Identity::from_request(req, pl).into_inner() {
