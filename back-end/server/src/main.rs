@@ -1,3 +1,5 @@
+// TODO: remove AUTH_SECRET_KEY from .env file
+// and change DATABASE_URL to example format
 #[macro_use]
 extern crate diesel;
 
@@ -10,6 +12,7 @@ mod auth_handler;
 mod errors;
 mod models;
 mod schema;
+mod user_session_handler;
 mod utils;
 
 #[actix_rt::main]
@@ -19,7 +22,7 @@ async fn main() -> std::io::Result<()> {
         "RUST_LOG",
         "simple-auth-server=debug,actix_web=info,actix_server=info",
     );
-    env_logger::init();
+    pretty_env_logger::init();
     let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
 
     // create db connection pool
@@ -52,6 +55,7 @@ async fn main() -> std::io::Result<()> {
                         .route(web::delete().to(auth_handler::logout))
                         .route(web::get().to(auth_handler::get_me)),
                 ),
+                // .service(web::resource("/user").route(web::post().to(unimplemented!()))),
             )
     })
     .bind("127.0.0.1:3000")?
