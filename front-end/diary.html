@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЭЖД</title>
+	<link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/main.css"/>
+	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+    
+    
+
+</head>
+<body>
+    <header class="header" role="banner">
+        <nav class="main-nav conteiner">
+            <ul class="header-nav-list">
+                <li class="header-logo" onclick="slowScroll ('#top')">ЭЖД</li>
+                <li class="header-nav-item active">
+                    <a class="header-nav-link" href="diary.html" title="Дневник" onclick="slowScroll ('#diary')">Дневник</a>
+                </li>
+                <li class="header-nav-item">
+                    <a class="header-nav-link" href="homework.html" title="Домашние задание" onclick="slowScroll ('#homework')">Домашние задания</a>
+                </li>
+                <li class="header-nav-item">
+                    <a class="header-nav-link" href="estimations.html" title="Оценки" onclick="slowScroll ('#estimations')">Оценки</a>
+                </li>
+                <li class="header-nav-item">
+                    <a class="header-nav-link" href="education.html" title="Образование" onclick="slowScroll ('#education')">Образование</a>
+                </li>
+                <li class="header-nav-item">
+                    <a class="header-nav-link" href="other.html" title="Прочее" onclick="slowScroll ('#other')">Прочее</a>
+                </li>
+                <li>
+                    <a class="header-btn cd-signin" href="#0">Войти в дневник</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+            <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+                <ul class="cd-switcher">
+                    <li><a href="#0">Авторизация</a></li>
+                    
+                </ul>
+    
+                <div id="cd-login"> <!-- log in form -->
+                    <form class="cd-form">
+                        <p class="fieldset">
+                            <label class="image-replace cd-email" for="signin-email">E-mail</label>
+                            <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+                            <span class="cd-error-message">Допущена ошибка!</span>
+                        </p>
+    
+                        <p class="fieldset">
+                            <label class="image-replace cd-password" for="signin-password">Пароль</label>
+                            <input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Пароль">
+                            <a href="#0" class="hide-password">скрыть</a>
+                            <span class="cd-error-message">Допущена ошибка!</span>
+                        </p>
+    
+                        <p class="fieldset">
+                            <input class="remember-me" type="checkbox" id="remember-me" checked>
+                            <label for="remember-me">Запомнить меня</label>
+                        </p>
+    
+                        <p class="fieldset">
+                            <input class="full-width include" type="submit" value="Войти">
+                        </p>
+                    </form>
+                    
+                    <p class="cd-form-bottom-message"><a href="#0">Забыли свой пароль?</a></p>
+                    <!-- <a href="#0" class="cd-close-form">Close</a> -->
+                </div> <!-- cd-login -->
+    
+                
+    
+                <div id="cd-reset-password"> <!-- reset password form -->
+                    <p class="cd-form-message">Вы потеряли пароль? Пожалуйста, введите свой адрес электронной почты. Вы получите ссылку для создания нового пароля.</p>
+    
+                    <form class="cd-form">
+                        <p class="fieldset">
+                            <label class="image-replace cd-email" for="reset-email">E-mail</label>
+                            <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+                            <span class="cd-error-message">Допущена ошибка!</span>
+                        </p>
+    
+                        <p class="fieldset">
+                            <input class="full-width has-padding" type="submit" value="Сбросить пароль">
+                        </p>
+                    </form>
+    
+                    <p class="cd-form-bottom-message"><a href="#0">Вернуться к регистрации</a></p>
+                </div> <!-- cd-reset-password -->
+                <a href="#0" class="cd-close-form">Закрыть</a>
+            </div> <!-- cd-user-modal-container -->
+    </div> <!-- cd-user-modal -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/main.js"></script> <!-- Gem jQuery -->
+
+    <div class="box">
+        <div class=box-mini>
+            <table> 
+                <TR class="table-diary-days">
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                </TR>
+    
+            </table>
+            
+            <table>
+                <TR class="table-diary-lessons">
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </TR>
+    
+            </table>
+       
+        </div>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function slowScroll (id) {
+            $("html,body").animate({
+                scrollTop: $(id).offset.top
+            
+            },500);
+        }
+    
+    
+    </script>
+    </div>
+</body>
+</html>

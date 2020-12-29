@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&display=swap');
+ 
+html * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    margin: 0;
+    font-size: 20px;
+    background-color: gray;
+    font-family: "Nunito";
+}
+  
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* header[role=banner] {
+    position: relative;
+    height: 80px;
+    background:#6A5ACD;
+} */
+
+/* Начало стилей */
+
+
+.conteiner {
+    margin: 0 auto;
+    width: 85%;
+}
+
+.header {
+    padding: 25px 0;
+    background-color:  #6c75ce;
+    border-bottom: 7px solid #3d418e;
+    border-radius: 40px;
+}
+ 
+.header-nav-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-weight: 700;
+}
+
+.header-nav-link {
+    padding: 5px 0;
+    color: white;
+}
+
+.header-nav-link:hover {
+    color: #F0E68C;
+    border-bottom: 3px solid #F0E68C;
+}
+
+.header-btn {
+    display: block;
+    padding: 15px 10px;
+    color: #6A5ACD;
+    background-color: #F0E68C;
+    border-radius: 12px;
+    
+}
+
+/* Главный блок на странице */
+
+
+.box {
+    background-color: white;
+    height: 100%;
+    width: 70%;
+    position: absolute;
+    left: 50%;
+    margin-left: -35%;
+    border-left:  5px dashed #3d418e;
+    border-right:  5px dashed #3d418e;
+}
+
+.box-mini {
+    background-color:white;
+    height: 100%;
+    width: 90%;
+    margin: 20px 0 0 5%;
+    
+}
+
+/* Таблица-дневник  */
+
+
+table,td,th{
+    border: 5px solid #6c75ce;
+    
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    
+    
+} 
+
+.table-diary-days {
+    background-color: #b6b1f2;
+    
+}
+
+.table-diary-lessons {
+    width: 100%;
+}
