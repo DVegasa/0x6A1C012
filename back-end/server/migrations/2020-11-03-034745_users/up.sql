@@ -1,8 +1,12 @@
 -- Your SQL goes here
 
 CREATE TABLE users (
-  email VARCHAR(100) NOT NULL PRIMARY KEY,
-  hash VARCHAR(128) NOT NULL, --argon hash
+  id SERIAL PRIMARY KEY,
+  login VARCHAR(32) NOT NULL,
+  name VARCHAR(32) NOT NULL,
+  surname VARCHAR(32) NOT NULL,
+  lastname VARCHAR(32) NOT NULL,
+  pswd_hash VARCHAR(128) NOT NULL, --argon hash
+  role INTEGER,
   created_at TIMESTAMP NOT NULL
 );
-
