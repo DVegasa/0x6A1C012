@@ -1,5 +1,5 @@
 -- Your SQL goes here
 CREATE TABLE parents (
-    parent_id INTEGER REFERENCES users (id),
-    chilldrens_id INTEGER[] REFERENCES users (id),
+    FOREIGN KEY (parent_id) INTEGER REFERENCES users (id),
+    FOREIGN KEY (chilldrens_id) INTEGER[] REFERENCES users (id),
 );
