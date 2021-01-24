@@ -11,6 +11,7 @@ use diesel::r2d2::{self, ConnectionManager};
 mod auth_handler;
 mod errors;
 mod models;
+mod schedule_handler;
 mod schema;
 mod user_session_handler;
 mod utils;
@@ -49,12 +50,17 @@ async fn main() -> std::io::Result<()> {
             .data(web::JsonConfig::default().limit(4096))
             // everything under '/api/' route
             .service(
-                web::scope("/api").service(
-                    web::resource("/auth")
-                        .route(web::post().to(auth_handler::login))
-                        .route(web::delete().to(auth_handler::logout))
-                        .route(web::get().to(auth_handler::get_me)),
-                ),
+                web::scope("/api")
+                    .service(
+                        web::resource("/auth")
+                            .route(web::post().to(auth_handler::login))
+                            .route(web::delete().to(auth_handler::logout))
+                            .route(web::get().to(auth_handler::get_me)),
+                    )
+                    .service(
+                        web::resource("/schedule")
+                            .route(web::get().to(schedule_handler::get_schedule)),
+                    ),
                 // .service(web::resource("/user").route(web::post().to(unimplemented!()))),
             )
     })
