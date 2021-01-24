@@ -13,6 +13,81 @@ pub struct User {
     pub created_at: chrono::NaiveDateTime,
 }
 
+#[derive(Debug, Serialize, Deserialize, Queryable, Insertable)]
+#[table_name = "subject"]
+pub struct Subject {
+    pub id: i32,
+    pub subject_name: String,
+    pub teacher_id: i32,
+}
+
+#[derive(Debug, Serialize, Deserialize, Queryable, Insertable)]
+#[table_name = "lesson"]
+pub struct Lesson {
+    pub id: i32,
+    pub teacher_id: i32,
+    pub meeting_room: String,
+    pub subject_id: i32,
+    pub slot: i16,
+    pub lesson_date: chrono::NaiveDateTime,
+}
+
+#[derive(Debug, Serialize, Deserialize, Queryable, Insertable)]
+#[table_name = "attendance"]
+pub struct Attendance {
+    pub id: i32,
+    pub lesson_id: i32,
+    pub student_id: i32,
+    pub state: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Queryable, Insertable)]
+#[table_name = "class"]
+pub struct Class {
+    pub id: i32,
+    pub classroom_teacher_id: i32,
+    pub year_of_study: i16,
+    pub letter: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Queryable, Insertable)]
+#[table_name = "class_student"]
+pub struct ClassStudent {
+    pub id: i32,
+    pub student_id: i32,
+    pub class_id: i32,
+}
+
+#[derive(Debug, Serialize, Deserialize, Queryable, Insertable)]
+#[table_name = "homework"]
+pub struct Homework {
+    pub id: i32,
+    pub lesson_id: i32,
+    pub homework_text: String,
+    pub deadline: chrono::NaiveDateTime,
+}
+
+#[derive(Debug, Serialize, Deserialize, Queryable, Insertable)]
+#[table_name = "mark"]
+pub struct Mark {
+    pub id: i32,
+    pub lesson_id: i32,
+    pub teacher_id: i32,
+    pub student_id: i32,
+    pub mark: String,
+    pub coeffiecient: f32,
+}
+
+#[derive(Debug, Serialize, Deserialize, Queryable, Insertable)]
+#[table_name = "observation"]
+pub struct Observation {
+    pub id: i32,
+    pub lesson_id: i32,
+    pub teacher_id: i32,
+    pub student_id: i32,
+    pub description: String,
+}
+
 impl User {
     pub fn from_details<S: Into<String>, T: Into<String>>(email: S, pwd: T) -> Self {
         User {
