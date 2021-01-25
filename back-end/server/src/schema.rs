@@ -50,7 +50,7 @@ table! {
         lesson_id -> Nullable<Int4>,
         teacher_id -> Nullable<Int4>,
         student_id -> Nullable<Int4>,
-        mark -> Nullable<Varchar>,
+        mark_value -> Nullable<Varchar>,
         coeffiecient -> Nullable<Float4>,
     }
 }

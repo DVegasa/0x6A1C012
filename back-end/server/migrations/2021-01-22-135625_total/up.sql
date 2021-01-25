@@ -67,7 +67,7 @@ CREATE TABLE mark (
     lesson_id INTEGER,
     teacher_id INTEGER,
     student_id INTEGER,
-    mark VARCHAR(2),
+    mark_value VARCHAR(2),
     coeffiecient REAL,
     FOREIGN KEY (lesson_id) REFERENCES lesson(id),
     FOREIGN KEY (teacher_id) REFERENCES users(id),

@@ -74,7 +74,7 @@ pub struct Mark {
     pub lesson_id: i32,
     pub teacher_id: i32,
     pub student_id: i32,
-    pub mark: String,
+    pub mark_value: String,
     pub coeffiecient: f32,
 }
 
