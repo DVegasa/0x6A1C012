@@ -75,7 +75,7 @@ fn query(auth_data: AuthData, pool: web::Data<Pool>) -> Result<SlimUser, Service
         .load::<User>(conn)?;
 
     if let Some(user) = items.pop() {
-        if let Ok(matching) = verify(&user.hash, &auth_data.password) {
+        if let Ok(matching) = verify(&user.pswd_hash, &auth_data.password) {
             if matching {
                 return Ok(user.into());
             }
