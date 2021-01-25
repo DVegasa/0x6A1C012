@@ -8,8 +8,13 @@ pub type Pool = r2d2::Pool<ConnectionManager<PgConnection>>;
 #[derive(Debug, Serialize, Deserialize, Queryable, Insertable)]
 #[table_name = "users"]
 pub struct User {
-    pub email: String,
-    pub hash: String,
+    pub id: i32,
+    pub login: String,
+    pub firstname: String,
+    pub middlename: String,
+    pub lastname: String,
+    pub pswd_hash: String,
+    pub role: i16,
     pub created_at: chrono::NaiveDateTime,
 }
 
