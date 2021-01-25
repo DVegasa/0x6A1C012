@@ -94,10 +94,10 @@ pub struct Observation {
 }
 
 impl User {
-    pub fn from_details<S: Into<String>, T: Into<String>>(email: S, pwd: T) -> Self {
+    pub fn from_details<S: Into<String>, T: Into<String>>(login: S, pwd: T) -> Self {
         User {
-            email: email.into(),
-            hash: pwd.into(),
+            login: login.into(),
+            pswd_hash: pwd.into(),
             created_at: chrono::Local::now().naive_local(),
         }
     }
@@ -105,11 +105,11 @@ impl User {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SlimUser {
-    pub email: String,
+    pub login: String,
 }
 
 impl From<User> for SlimUser {
     fn from(user: User) -> Self {
-        SlimUser { email: user.email }
+        SlimUser { login: user.login }
     }
 }
