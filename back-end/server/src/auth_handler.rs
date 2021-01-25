@@ -13,7 +13,7 @@ use crate::utils::verify;
 
 #[derive(Debug, Deserialize)]
 pub struct AuthData {
-    pub email: String,
+    pub login: String,
     pub password: String,
 }
 
@@ -68,10 +68,10 @@ pub async fn get_me(logged_user: LoggedUser) -> HttpResponse {
 }
 /// Diesel query
 fn query(auth_data: AuthData, pool: web::Data<Pool>) -> Result<SlimUser, ServiceError> {
-    use crate::schema::users::dsl::{email, users};
+    use crate::schema::users::dsl::{login, users};
     let conn: &PgConnection = &pool.get().unwrap();
     let mut items = users
-        .filter(email.eq(&auth_data.email))
+        .filter(login.eq(&auth_data.login))
         .load::<User>(conn)?;
 
     if let Some(user) = items.pop() {
