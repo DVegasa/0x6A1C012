@@ -8,7 +8,8 @@ html * {
 body {
     margin: 0;
     font-size: 20px;
-    background-color: gray;
+    background: url('../img/паттерннн.png') ;
+    background-size: 1600px;
     font-family: "Nunito";
 }
   
@@ -49,8 +50,9 @@ ul {
 .header {
     padding: 25px 0;
     background-color:  #6c75ce;
-    border-bottom: 7px solid #3d418e;
-    border-radius: 40px;
+    border-bottom: 10px solid #3d418e;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
  
 .header-nav-list {
@@ -59,11 +61,18 @@ ul {
     align-items: center;
     width: 100%;
     font-weight: 700;
+
 }
 
 .header-nav-link {
-    padding: 5px 0;
-    color: white;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+
+    color: #FFFFFF;
 }
 
 .header-nav-link:hover {
@@ -84,26 +93,35 @@ ul {
 
 
 .box {
-    background-color: white;
-    height: 100%;
-    width: 70%;
     position: absolute;
-    left: 50%;
-    margin-left: -35%;
-    border-left:  5px dashed #3d418e;
-    border-right:  5px dashed #3d418e;
+    left: 20%;
+    right: 20%;
+    height: 100%;
+    
+    background: #FFFFFF;
+    border-left: 5px dashed #3D418E;
+    border-right: 5px dashed #3D418E;
 }
 
-.box-mini {
-    background-color:white;
+.mini-box {
+    position: absolute;
+    left: 20px;
+    right: 20px;
     height: 100%;
-    width: 90%;
-    margin: 20px 0 0 5%;
     
 }
 
 /* Таблица-дневник  */
+ 
 
+.table-radius {
+    height: 10px;
+    width: 900px;
+    margin-top: 17px;
+    background-color: #6c75ce;
+    border-top-left-radius: 70px;
+    border-top-right-radius: 70px;
+}
 
 table,td,th{
     border: 5px solid #6c75ce;
@@ -112,16 +130,38 @@ table,td,th{
 
 table {
     border-collapse: collapse;
-    width: 100%;
-    
-    
-} 
+    width: 900px;
+   
+}
+
+.rise {
+    margin-top: -2px;
+}
+
+.lower {
+    margin-top: -5px;
+}
 
 .table-diary-days {
+    height: 80px;
     background-color: #b6b1f2;
     
 }
 
 .table-diary-lessons {
     width: 100%;
+    border-top: -5px;
+    height: 120px;
+}
+
+.lesson-column {
+    background-color: #ecedff;
+}
+
+.home-work-column {
+    background-color: #ffffff;
+}
+
+.marks-column {
+    background-color: #fff4a7;
 }
