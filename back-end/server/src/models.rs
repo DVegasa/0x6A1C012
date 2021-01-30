@@ -1,11 +1,12 @@
 // use super::schema::*;
 use diesel::{r2d2::ConnectionManager, PgConnection};
+use crate::schema::*;
 use serde::{Deserialize, Serialize};
 
 // type alias to use in multiple places
 pub type Pool = r2d2::Pool<ConnectionManager<PgConnection>>;
 
-#[derive(Debug, Serialize, Deserialize, Queryable)]
+#[derive(Debug, Serialize, Deserialize, Queryable, Insertable)]
 #[diesel(table_name = "users")]
 pub struct User {
     pub id: i32,
@@ -14,7 +15,7 @@ pub struct User {
     pub middlename: String,
     pub lastname: String,
     pub pswd_hash: String,
-    pub role: i16,
+    pub role: Option<i16>,
     pub created_at: chrono::NaiveDateTime,
 }
 
