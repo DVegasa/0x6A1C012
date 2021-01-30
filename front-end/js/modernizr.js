@@ -1405,4 +1405,3 @@ window.Modernizr = (function( window, document, undefined ) {
 
 })(this, this.document);
 
-color: white;
