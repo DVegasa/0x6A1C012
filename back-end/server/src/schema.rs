@@ -11,6 +11,7 @@ table! {
     class (id) {
         id -> Int4,
         classroom_teacher_id -> Nullable<Int4>,
+        weekly_schedule_id -> Nullable<Int4>,
         year_of_study -> Nullable<Int2>,
         letter -> Nullable<Varchar>,
     }
@@ -40,7 +41,8 @@ table! {
         meeting_room -> Nullable<Text>,
         subject_id -> Nullable<Int4>,
         slot -> Nullable<Int2>,
-        lesson_date -> Date,
+        lesson_time -> Int2,
+        lesson_week_day -> Int2,
     }
 }
 
@@ -86,7 +88,15 @@ table! {
     }
 }
 
+table! {
+    weekly_schedule (id) {
+        id -> Int4,
+        lesson_ids -> Nullable<Array<Int4>>,
+    }
+}
+
 joinable!(class -> users (classroom_teacher_id));
+joinable!(class -> weekly_schedule (weekly_schedule_id));
 joinable!(class_student -> class (class_id));
 joinable!(class_student -> users (student_id));
 joinable!(homework -> lesson (lesson_id));
@@ -106,4 +116,5 @@ allow_tables_to_appear_in_same_query!(
     observation,
     subject,
     users,
+    weekly_schedule,
 );
