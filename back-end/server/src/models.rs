@@ -1,6 +1,6 @@
 // use super::schema::*;
-use diesel::{r2d2::ConnectionManager, PgConnection};
 use crate::schema::*;
+use diesel::{r2d2::ConnectionManager, PgConnection};
 use serde::{Deserialize, Serialize};
 
 // type alias to use in multiple places
@@ -27,6 +27,19 @@ pub struct Subject {
     pub teacher_id: i32,
 }
 
+// TODO: Insertable version of this struct
+#[derive(Debug, Serialize, Deserialize, Queryable)]
+#[diesel(table_name = "lesson")]
+pub struct Lesson {
+    pub id: i32,
+    pub teacher_id: i32,
+    pub meeting_room: String,
+    pub subject_id: i32,
+    pub slot: i16,
+    pub lesson_time: i16,
+    pub lesson_week_day: i16,
+}
+
 #[derive(Debug, Serialize, Deserialize, Queryable)]
 #[diesel(table_name = "attendance")]
 pub struct Attendance {
@@ -37,10 +50,18 @@ pub struct Attendance {
 }
 
 #[derive(Debug, Serialize, Deserialize, Queryable)]
+#[diesel(table_name = "weekly_schedule")]
+pub struct WeeklySchedule {
+    pub id: i32,
+    pub lesson_ids: Vec<i32>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Queryable)]
 #[diesel(table_name = "class")]
 pub struct Class {
     pub id: i32,
     pub classroom_teacher_id: i32,
+    pub weekly_schedule_id: i32,
     pub year_of_study: i16,
     pub letter: String,
 }
@@ -49,8 +70,8 @@ pub struct Class {
 #[diesel(table_name = "class_student")]
 pub struct ClassStudent {
     pub id: i32,
-    pub student_id: i32,
-    pub class_id: i32,
+    pub student_id: Option<i32>,
+    pub class_id: Option<i32>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Queryable)]
@@ -81,18 +102,6 @@ pub struct Observation {
     pub teacher_id: i32,
     pub student_id: i32,
     pub description: String,
-}
-
-// TODO: Insertable version of this struct
-#[derive(Debug, Serialize, Deserialize, Queryable)]
-#[diesel(table_name = "lesson")]
-pub struct Lesson {
-    pub id: i32,
-    pub teacher_id: i32,
-    pub meeting_room: String,
-    pub subject_id: i32,
-    pub slot: i16,
-    pub lesson_date: chrono::NaiveDateTime,
 }
 
 // impl User {
