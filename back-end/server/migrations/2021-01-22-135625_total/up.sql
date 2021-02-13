@@ -20,10 +20,10 @@ CREATE TABLE subject (
 
 CREATE TABLE lesson (
     id SERIAL PRIMARY KEY,
-    teacher_id INTEGER, -- Teacher user id
-    meeting_room TEXT, -- Place where everyone met
-    subject_id INTEGER, -- reference to subject name and etc
-    slot SMALLINT, -- lesson number in day
+    teacher_id INTEGER NOT NULL, -- Teacher user id
+    meeting_room TEXT NOT NULL, -- Place where everyone met
+    subject_id INTEGER NOT NULL, -- reference to subject name and etc
+    slot SMALLINT NOT NULL, -- lesson number in day
     lesson_time SMALLINT NOT NULL, -- Day time in minutes
     lesson_week_day SMALLINT NOT NULL, -- Day time in minutes
     FOREIGN KEY (teacher_id) REFERENCES users(id),
@@ -48,18 +48,18 @@ CREATE TABLE weekly_schedule (
 
 CREATE TABLE class (
     id SERIAL PRIMARY KEY,
-    classroom_teacher_id INTEGER,
-    weekly_schedule_id INTEGER, -- bind class to schedule
-    year_of_study SMALLINT, -- number of class
-    letter VARCHAR(1), -- symbol after class number
+    classroom_teacher_id INTEGER NOT NULL,
+    weekly_schedule_id INTEGER NOT NULL, -- bind class to schedule
+    year_of_study SMALLINT NOT NULL, -- number of class
+    letter VARCHAR(1) NOT NULL, -- symbol after class number
     FOREIGN KEY (classroom_teacher_id) REFERENCES users(id),
     FOREIGN KEY (weekly_schedule_id) REFERENCES weekly_schedule(id)
 );
 
 CREATE TABLE class_student (
     id SERIAL PRIMARY KEY,
-    student_id INTEGER,
-    class_id INTEGER,
+    student_id INTEGER NOT NULL,
+    class_id INTEGER NOT NULL,
     FOREIGN KEY (student_id) REFERENCES users(id),
     FOREIGN KEY (class_id) REFERENCES class(id)
 );
