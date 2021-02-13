@@ -10,18 +10,18 @@ table! {
 table! {
     class (id) {
         id -> Int4,
-        classroom_teacher_id -> Nullable<Int4>,
-        weekly_schedule_id -> Nullable<Int4>,
-        year_of_study -> Nullable<Int2>,
-        letter -> Nullable<Varchar>,
+        classroom_teacher_id -> Int4,
+        weekly_schedule_id -> Int4,
+        year_of_study -> Int2,
+        letter -> Varchar,
     }
 }
 
 table! {
     class_student (id) {
         id -> Int4,
-        student_id -> Nullable<Int4>,
-        class_id -> Nullable<Int4>,
+        student_id -> Int4,
+        class_id -> Int4,
     }
 }
 
@@ -37,10 +37,10 @@ table! {
 table! {
     lesson (id) {
         id -> Int4,
-        teacher_id -> Nullable<Int4>,
-        meeting_room -> Nullable<Text>,
-        subject_id -> Nullable<Int4>,
-        slot -> Nullable<Int2>,
+        teacher_id -> Int4,
+        meeting_room -> Text,
+        subject_id -> Int4,
+        slot -> Int2,
         lesson_time -> Int2,
         lesson_week_day -> Int2,
     }
