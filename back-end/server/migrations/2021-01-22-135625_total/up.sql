@@ -13,8 +13,8 @@ CREATE TABLE users (
 
 CREATE TABLE subject ( 
     id SERIAL PRIMARY KEY,
-    subject_name TEXT,
-    teacher_id INTEGER,
+    subject_name TEXT NOT NULL,
+    teacher_id INTEGER NOT NULL,
     FOREIGN KEY (teacher_id) REFERENCES users(id)
 );
 
