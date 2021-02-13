@@ -53,7 +53,7 @@ pub struct Attendance {
 #[diesel(table_name = "weekly_schedule")]
 pub struct WeeklySchedule {
     pub id: i32,
-    pub lesson_ids: Vec<i32>,
+    pub lesson_ids: Option<Vec<i32>>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Queryable)]
@@ -70,8 +70,8 @@ pub struct Class {
 #[diesel(table_name = "class_student")]
 pub struct ClassStudent {
     pub id: i32,
-    pub student_id: Option<i32>,
-    pub class_id: Option<i32>,
+    pub student_id: i32,
+    pub class_id: i32,
 }
 
 #[derive(Debug, Serialize, Deserialize, Queryable)]
