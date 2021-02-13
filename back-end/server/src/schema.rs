@@ -70,8 +70,8 @@ table! {
 table! {
     subject (id) {
         id -> Int4,
-        subject_name -> Nullable<Text>,
-        teacher_id -> Nullable<Int4>,
+        subject_name -> Text,
+        teacher_id -> Int4,
     }
 }
 
