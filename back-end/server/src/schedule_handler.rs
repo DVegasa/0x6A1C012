@@ -1,8 +1,7 @@
-use std::collections::HashMap;
-
 use crate::models;
 use crate::{errors::ServiceError, models::Pool};
 
+use actix_rt::blocking::BlockingError;
 use itertools::Itertools;
 
 use actix_web::{web, HttpResponse};
@@ -88,11 +87,12 @@ pub async fn get_schedule(
     let res = web::block(move || query(query_data.into_inner(), pool)).await;
 
     match res {
-        Ok(_) => (),
-        Err(_) => (),
-    };
-
-    Ok(HttpResponse::Ok().body(""))
+        Ok(week_lesson_table) => Ok(HttpResponse::Ok().json(week_lesson_table)),
+        Err(err) => match err {
+            BlockingError::Error(service_error) => Err(service_error),
+            BlockingError::Canceled => Err(ServiceError::InternalServerError),
+        },
+    }
 }
 
 // TODO: rewrite with join
@@ -147,8 +147,7 @@ fn query(
             .into_group_map_by(|raw_lesson_info| raw_lesson_info.lesson_week_day);
 
         // Group day lessons by slot
-        // for (_, day_lessons) in lessons_by_week_day.iter_mut() {
-        for (_, ref mut day_lessons) in lessons_by_week_day.iter_mut() {
+        for ref mut day_lessons in lessons_by_week_day.values_mut() {
             day_lessons.sort_by(|ref a, ref b| a.slot.cmp(&b.slot));
         }
 
