@@ -1,5 +1,9 @@
+use std::collections::HashMap;
+
 use crate::models;
 use crate::{errors::ServiceError, models::Pool};
+
+use itertools::Itertools;
 
 use actix_web::{web, HttpResponse};
 use serde::{Deserialize, Serialize};
@@ -10,15 +14,41 @@ use diesel::PgConnection;
 #[derive(Deserialize)]
 pub struct StudentScheduleRequestInfo {
     login: String,
-    timestamp: chrono::NaiveDateTime,
 }
 
 #[derive(Serialize)]
-pub struct WeekLessonTable([DayLessonTable; 6]);
+pub struct WeekLessonTable(Vec<DayLessonTable>);
+
+impl From<Vec<Vec<RawLessonInfo>>> for WeekLessonTable {
+    fn from(week_lessons: Vec<Vec<RawLessonInfo>>) -> Self {
+        <WeekLessonTable as From<Vec<DayLessonTable>>>::from(
+            week_lessons
+                .into_iter()
+                .map(|day_lessons| DayLessonTable::from(day_lessons))
+                .collect::<Vec<DayLessonTable>>(),
+        )
+    }
+}
+
+impl From<Vec<DayLessonTable>> for WeekLessonTable {
+    fn from(week_lessons: Vec<DayLessonTable>) -> Self {
+        Self(week_lessons)
+    }
+}
 
 #[derive(Serialize)]
 pub struct DayLessonTable {
     lessons: Vec<Lesson>,
+}
+
+impl From<Vec<RawLessonInfo>> for DayLessonTable {
+    fn from(day_lessons: Vec<RawLessonInfo>) -> Self {
+        let lessons = day_lessons
+            .into_iter()
+            .map(|raw_lesson| Lesson::from(raw_lesson))
+            .collect();
+        Self { lessons }
+    }
 }
 
 #[derive(Serialize)]
@@ -28,15 +58,27 @@ pub struct Lesson {
     start_time: String,
 }
 
-impl Lesson {
-    pub fn new(subject_name: String, meeting_room: String, start_time: i16) -> Self {
-        let start_time = format!("{:02}:{:02}", start_time / 60, start_time % 60);
-        Lesson {
-            subject_name,
-            meeting_room,
+impl From<RawLessonInfo> for Lesson {
+    fn from(raw_lesson_info: RawLessonInfo) -> Self {
+        let start_time = format!(
+            "{:02}:{:02}",
+            raw_lesson_info.lesson_time / 60,
+            raw_lesson_info.lesson_time % 60
+        );
+        Self {
+            subject_name: raw_lesson_info.subject_name,
+            meeting_room: raw_lesson_info.meeting_room,
             start_time,
         }
     }
+}
+
+pub struct RawLessonInfo {
+    pub subject_name: String,
+    pub meeting_room: String,
+    pub lesson_time: i16,
+    pub lesson_week_day: i16,
+    pub slot: i16,
 }
 
 pub async fn get_schedule(
@@ -60,14 +102,6 @@ fn query(
     pool: web::Data<Pool>,
 ) -> Result<WeekLessonTable, ServiceError> {
     use crate::schema::{class, class_student, lesson, subject, users, weekly_schedule};
-
-    struct RawLessonInfo {
-        subject_name: String,
-        meeting_room: String,
-        lesson_time: i16,
-        lesson_week_day: i16,
-        slot: i16,
-    }
 
     // Take user by login
     let conn: &PgConnection = &pool.get().unwrap();
@@ -107,6 +141,25 @@ fn query(
                 slot: lesson.slot,
             })
         }
+        // Group lessons by week day
+        let mut lessons_by_week_day/*: HashMap<i16/*week day*/, Vec<RawLessonInfo>>*/ = lessons
+            .into_iter()
+            .into_group_map_by(|raw_lesson_info| raw_lesson_info.lesson_week_day);
+
+        // Group day lessons by slot
+        // for (_, day_lessons) in lessons_by_week_day.iter_mut() {
+        for (_, ref mut day_lessons) in lessons_by_week_day.iter_mut() {
+            day_lessons.sort_by(|ref a, ref b| a.slot.cmp(&b.slot));
+        }
+
+        let mut lessons_by_week_day_matrix = Vec::new();
+        for (_, day) in lessons_by_week_day.into_iter() {
+            lessons_by_week_day_matrix.push(day);
+        }
+
+        return Ok(<WeekLessonTable as From<Vec<Vec<RawLessonInfo>>>>::from(
+            lessons_by_week_day_matrix,
+        ));
     }
 
     Err(ServiceError::BadRequest(
