@@ -28,19 +28,27 @@ use rocket_contrib::json::Json;
 //     // }
 // }
 
-#[get("/get/<id>")]
-pub async fn get(id: String, connection: Conn) -> Result<String, String> {
-    match ObjectId::with_string(&id) {
-        Ok(res) => match crate::models::user::get(res, &connection).await {
-            Ok(ok) => {
-                if let Some(u) = ok {
-                    Ok(serde_json::to_string_pretty(&u).unwrap())
-                } else {
-                    Err(String::from("nothing"))
-                }
-            }
-            Err(_) => Err(String::from("cannot delete")),
-        },
-        Err(e) => Err(e.to_string()),
+// #[get("/get/<id>")]
+// pub async fn get(id: String, connection: Conn) -> Result<String, String> {
+//     match ObjectId::with_string(&id) {
+//         Ok(res) => match crate::models::user::get(res, &connection).await {
+//             Ok(ok) => {
+//                 if let Some(u) = ok {
+//                     Ok(serde_json::to_string_pretty(&u).unwrap())
+//                 } else {
+//                     Err(String::from("nothing"))
+//                 }
+//             }
+//             Err(_) => Err(String::from("cannot delete")),
+//         },
+//         Err(e) => Err(e.to_string()),
+//     }
+// }
+
+#[get("/delete/all")]
+pub async fn delete_all(connection: Conn) -> Result<Json<bool>, String> {
+    match crate::models::user::delete_all(&connection).await {
+        Ok(_) => Ok(Json(true)),
+        Err(_) => Err("delete error".to_owned()),
     }
 }
