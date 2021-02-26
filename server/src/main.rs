@@ -1,6 +1,5 @@
 // TODO: remove AUTH_SECRET_KEY from .env file
 // and change DATABASE_URL to example format
-#![feature(async_closure)]
 use actix_identity::{CookieIdentityPolicy, IdentityService};
 use actix_web::{middleware, web, App, HttpServer};
 

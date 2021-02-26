@@ -24,12 +24,6 @@ impl Model for ClassStudent {
     }
 }
 
-impl Default for ClassStudent {
-    fn default() -> Self {
-        Default::default()
-    }
-}
-
 impl TryFrom<Document> for ClassStudent {
     type Error = bson::de::Error;
     fn try_from(document: Document) -> Result<Self, Self::Error> {
