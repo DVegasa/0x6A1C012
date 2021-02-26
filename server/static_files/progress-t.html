@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЭЖД</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/main-t.css"/>
+    <script src="js/modernizr.js"></script> <!-- Modernizr -->
+    
+    <meta name="viewport" content="widht=device-widht">
+
+    <!-- Bootstrap-4 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<header class="header" role="banner">
+    <div class="container">
+        <div class="header-burger">
+            <span></span>
+        </div>
+        <div class="main-nav ">
+             <ul class="header-nav-list">
+                <li class="header-nav-item">
+                    <a class="header-nav-link" href="own-t.html" title="Главная" onclick="slowScroll ('#own')">Главная</a>
+                </li>
+                <li class="header-nav-item">
+                    <a class="header-nav-link" href="timetable-t.html" title="Расписание" onclick="slowScroll ('#timetable')">Расписание</a>
+                </li>
+                <li class="header-nav-item active">
+                    <a class="header-nav-link" href="diary-t.html" title="Дневник" onclick="slowScroll ('#diary')">Дневник</a>
+                </li>
+                <li class="header-nav-item">
+                    <a class="header-nav-link header-nav-link-own" href="progress-t.html" title="Успеваемость" onclick="slowScroll ('#progress')">Успеваемость</a>
+                </li>
+                <div class="bell">
+                    <img src="img/bell2.png" alt="">
+                </div>
+                <div class="gear">
+                    <img src="img/gear2.svg" alt="">
+                </div>
+                <li>
+                    <a class="header-btn cd-signin" href="#0">Личный кабинет</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</header>
+<body>
+    <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+       	<div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+            <ul class="cd-switcher">
+                <li><a href="#0">Авторизация</a></li>
+                
+            </ul>
+
+            <div id="cd-login"> <!-- log in form -->
+                <form class="cd-form">
+                    <p class="fieldset">
+                        <label class="image-replace cd-email" for="signin-email">E-mail</label>
+                        <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+                        <span class="cd-error-message">Допущена ошибка!</span>
+                    </p>
+
+                    <p class="fieldset">
+                        <label class="image-replace cd-password" for="signin-password">Пароль</label>
+                        <input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Пароль">
+                        <a href="#0" class="hide-password">скрыть</a>
+                        <span class="cd-error-message">Допущена ошибка!</span>
+                    </p>
+
+                    <p class="fieldset">
+                        <input class="remember-me" type="checkbox" id="remember-me" checked>
+                        <label for="remember-me">Запомнить меня</label>
+                    </p>
+
+                    <p class="fieldset">
+                        <input class="full-width include" type="submit" value="Войти">
+                    </p>
+                </form>
+                
+                <p class="cd-form-bottom-message"><a href="#0">Забыли свой пароль?</a></p>
+                <!-- <a href="#0" class="cd-close-form">Close</a> -->
+            </div> <!-- cd-login -->
+
+            
+
+            <div id="cd-reset-password"> <!-- reset password form -->
+                <p class="cd-form-message">Вы потеряли пароль? Пожалуйста, введите свой адрес электронной почты. Вы получите ссылку для создания нового пароля.</p>
+
+                <form class="cd-form">
+                    <p class="fieldset">
+                        <label class="image-replace cd-email" for="reset-email">E-mail</label>
+                        <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+                        <span class="cd-error-message">Допущена ошибка!</span>
+                    </p>
+
+                    <p class="fieldset">
+                        <input class="full-width has-padding" type="submit" value="Сбросить пароль">
+                    </p>
+                </form>
+
+                <p class="cd-form-bottom-message"><a href="#0">Вернуться к регистрации</a></p>
+            </div> <!-- cd-reset-password -->
+            <a href="#0" class="cd-close-form">Закрыть</a>
+        </div> <!-- cd-user-modal-container -->
+    </div> <!-- cd-user-modal -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/main.js"></script> <!-- Gem jQuery -->
+
+    <div class="box">
+        <div class="body-container">
+            <div class="mini-box">
+                <div class="table-radius"></div>
+                <table class="rise" >
+                    <tr class="table-diary-days">
+                        <td >1 чет.</td>
+                        <td >2 чет.</td>
+                        <td >3 чет.</td>
+                        <td >4 чет.</td>
+                        <td >год</td>
+                        
+                        
+                    </tr>
+                </table> 
+                <table class="lower">
+                    <TR class="column">
+                        <td width="192,5px" class="lesson-column">Русский</td>
+                        <td>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                            </div>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                        </td>
+                        <td width="96,25px" class="marks-column">4.40</td>
+                    </TR>
+                    <TR class="column">
+                        <td width="192,5px" class="lesson-column">Математика</td>
+                        <td>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                            </div>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >2</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                        </td>
+                        <td width="96,25px" class="marks-column">4.40</td>
+                    </TR>
+                    <TR class="column">
+                        <td width="192,5px" class="lesson-column">Информатика</td>
+                        <td>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                            </div>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >2</div>
+                                <div class="column-marks" ></div>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                        </td>
+                        <td width="96,25px" class="marks-column">4.40</td>
+                    </TR>
+                    <TR class="column">
+                        <td width="192,5px" class="lesson-column">Физика</td>
+                        <td>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                            </div>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                        </td>
+                        <td width="96,25px" class="marks-column">4.40</td>
+                    </TR>
+                    <TR class="column">
+                        <td width="192,5px" class="lesson-column">История</td>
+                        <td>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >4</div>
+                            </div>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >3</div>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                        </td>
+                        <td width="96,25px" class="marks-column">4.40</td>
+                    </TR>
+                    <TR class="column">
+                        <td width="192,5px" class="lesson-column">Химия</td>
+                        <td>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                            </div>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" ></div>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                        </td>
+                        <td width="96,25px" class="marks-column">4.40</td>
+                    </TR>
+                    <TR class="column">
+                        <td width="192,5px" class="lesson-column">Физкультура</td>
+                        <td>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >2</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                            </div>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                        </td>
+                        <td width="96,25px" class="marks-column">4.40</td>
+                    </TR>
+                    <TR class="column">
+                        <td width="192,5px" class="lesson-column">География</td>
+                        <td>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                            </div>
+                            <div class="cell-column-marks">
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" >4</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" >3</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" >5</div>
+                                <div class="column-marks" ></div>
+                                <div class="column-marks" ></div>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                        </td>
+                        <td width="96,25px" class="marks-column">4.40</td>
+                    </TR>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function slowScroll (id) {
+            $("html,body").animate({
+                scrollTop: $(id).offset.top
+            
+            },500);
+        }
+    
+    
+    </script>
+    </div>
+</body>
+</html>

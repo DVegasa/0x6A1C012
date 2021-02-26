@@ -1,0 +1,22 @@
+.pencil-timetable-t {
+    
+    align-items: center;
+    width: 25px;
+    float: right;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    background-color: #b6b1f2;
+}
+
+.pencil-diary-t {
+    
+    align-items: center;
+    width: 25px;
+    float: inline-start;
+    float: right;
+    
+    margin-right: 2%;
+    margin-bottom: 2%;
+    background-color: #FFFFFF;
+}
+

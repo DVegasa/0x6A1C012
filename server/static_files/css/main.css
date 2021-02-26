@@ -6,18 +6,20 @@ html * {
 }
 
 body {
+    width: 100%;
     margin: 0;
     font-size: 20px;
     background: url('../img/паттерннн.png') ;
-    background-size: 1600px;
+    background-size: 100%;
     font-family: "Nunito";
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
 }
   
-*, *:after, *:before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
+
 
 img {
     max-width: 100%;
@@ -39,85 +41,271 @@ ul {
     background:#6A5ACD;
 } */
 
-/* Начало стилей */
+/* header */
 
-
-.conteiner {
-    margin: 0 auto;
-    width: 85%;
-}
 
 .header {
-    padding: 25px 0;
-    background-color:  #6c75ce;
-    border-bottom: 10px solid #3d418e;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding: 25px 0px;
+    z-index: 50;
+   
 }
- 
+
+.header:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    
+    width: 100%;
+    height: 100%; 
+    background-color:  #6c75ce;
+    border-bottom: 5px solid #CBCEF2;
+    
+    z-index: 2;
+    
+} 
+
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+.header-burger {
+    display: none;
+}
+
 .header-nav-list {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     font-weight: 700;
-
+    padding-top: 1%;
+    
 }
 
 .header-nav-link {
+    
     font-family: Nunito;
     font-style: normal;
     font-weight: bold;
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 140%;
+    line-height: 2%;
     text-align: center;
-
+    text-decoration: none;
     color: #FFFFFF;
+    
 }
 
+
+
 .header-nav-link:hover {
+    color: #F0E68C;
+   
+}
+
+.header-nav-link-own {
     color: #F0E68C;
     border-bottom: 3px solid #F0E68C;
 }
 
 .header-btn {
+    left: 5%;
     display: block;
     padding: 15px 10px;
     color: #6A5ACD;
     background-color: #F0E68C;
+    border-bottom: 3px solid #F0E68C;
     border-radius: 12px;
+    
     
 }
 
-/* Главный блок на странице */
 
+@media (max-widht:767px) {
+    body.lock {
+        overflow: hidden;
+    }
+
+    .header {
+        padding: 15px 0px;
+    }
+
+    .header-burger {
+        display: block;
+        position: relative;
+        width: 30px;
+        height: 20px;
+        position: relative;
+        z-index: 3;
+    }
+
+    .header-burger span{
+        position: absolute;
+        background-color: #ffffff;
+        width: 100%;
+        height: 2%;
+        left: 0;
+        top: 9px;
+        transition: all 0.3s ease 0s;
+    }
+
+    .header-burger:before,
+    .header-burge:after {
+        content: "";
+        background-color: #ffffff;
+        position: absolute;
+        width: 100%;
+        height: 2%;
+        left: 0;
+        transition: all 0.3s ease 0s;
+    }
+
+    .header-burger:before {
+        top: 0;
+    }
+
+    .header-burge:after {
+        bottom: 0;
+    }
+
+    .header-burger.active span {
+        transform: scale(0);
+        
+    }
+
+    .header-burger.active:before {
+        transform:  rotate(45deg);
+        top: 9;
+    }
+
+    .header-burger.active:after {
+        transform:  rotate(-45deg);
+        bottom: 9;
+    }
+
+    .main-nav {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: #3d418e;
+        padding: 100px 10px 20px 10px;
+        transition: all 0.3s ease 0s;
+    }
+
+    .main-nav.active {
+        top: 0;
+    }
+
+    .header-nav-list {
+        display: block;
+        margin: 0px 0px 20px 0px;
+    }
+}
+
+
+@media (max-widht:100%){
+    .header {
+        max-width: 970px;
+    }
+
+}
+
+@media (max-widht:992px){
+    .header {
+        max-width: 750px;
+    }
+
+}
+
+@media (max-widht:767px){
+    .header {
+        max-width: none;
+    }
+
+}
+
+.bell {
+    position: absolute;
+    align-items: center;
+    width: 30px;
+    left: calc(50% - 35px/2 + 28%);
+    background-color: #6c75ce;
+    
+}
+
+.gear {
+    position: absolute;
+    align-items: center;
+    width: 30px;
+    left: calc(50% - 35px/2 + 32%);
+    background-color: #6c75ce;
+    
+    
+}
+
+
+
+/* Main block per page */
 
 .box {
-    position: absolute;
+    position: fixed;
     left: 20%;
     right: 20%;
+    top: 0;
+    bottom: 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    background: #FFFFFF;
+    border-left: 5px dashed #3D418E;
+    border-right: 5px dashed #3D418E;
+}
+.boxtime{
+    position: fixed;
+    left: 20%;
+    right: 20%;
+    top: 0;
+    bottom: 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     height: 100%;
-    
+    overflow: auto;
+
     background: #FFFFFF;
     border-left: 5px dashed #3D418E;
     border-right: 5px dashed #3D418E;
 }
 
+
+.body-container {
+    padding-top: 140px;
+}
+
+/* student-diary */
+
 .mini-box {
     position: absolute;
     left: 20px;
     right: 20px;
-    height: 100%;
-    
+    height: 100%;   
 }
 
-/* Таблица-дневник  */
  
 
 .table-radius {
-    height: 10px;
-    width: 900px;
-    margin-top: 17px;
+    height: 1%;
+    width: 100%;
+    /*margin-top: 17px;*/
     background-color: #6c75ce;
     border-top-left-radius: 70px;
     border-top-right-radius: 70px;
@@ -130,7 +318,7 @@ table,td,th{
 
 table {
     border-collapse: collapse;
-    width: 900px;
+    width: 100%;
    
 }
 
@@ -139,29 +327,264 @@ table {
 }
 
 .lower {
-    margin-top: -5px;
+    margin-top: -5px;  
 }
 
 .table-diary-days {
     height: 80px;
-    background-color: #b6b1f2;
+    background-color: #B6B1F2;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 140%;
+    line-height: 2%;
+    text-align: center;
+    text-decoration: none;
+    color:#3D418E;
     
 }
 
-.table-diary-lessons {
+.column {
     width: 100%;
     border-top: -5px;
-    height: 120px;
+    height: 100px;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 140%;
+    line-height: 2%;
+    text-align: center;
+    text-decoration: none;
+    color: #3d418e;
 }
 
+
+
 .lesson-column {
-    background-color: #ecedff;
+    background-color: #f5f5ff;
+} 
+
+.diary-time-subject {
+    padding-bottom: 5%;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 80%;
+    text-align: center;
+    text-decoration: none;
+    color: #B6B1F2;
+}
+
+.diary-subjects-line-number {
+    
+    color: #6E75CE;
+}
+
+.diary-subjects-line-subject {
+    color: #3D418E;
+    padding-bottom: 5%;
+    margin-left: 20%;
 }
 
 .home-work-column {
-    background-color: #ffffff;
+    background-color: #ffffff; 
 }
 
 .marks-column {
     background-color: #fff4a7;
+}
+
+/* student-tametable*/
+
+.timetable-table {
+    float: left;
+    height: 400px;
+    width: 282px;
+    margin: 25px 0px 0px 24px;
+    background-color: #ecedff;
+    border: 5px solid #6c75ce;
+    border-radius: 25px;
+}
+
+.timetable-table-day {
+    height: 10%;
+    background-color: #b6b1f2;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 140%;
+    padding-top: 2%;
+    text-align: center;
+    
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.timetable-subjects {
+    height: 11%;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-bottom: 3px solid #CBCEF2;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 100%;
+}
+
+.time-subject {
+    height: 2%;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: #B6B1F2;
+}
+
+.timetable-subjects-line {
+    display: flex;  
+}
+
+.timetable-subjects-line-number {
+    color: #6E75CE;
+    font-size: 120%;
+}
+
+.timetable-subjects-line-subject {
+    color: #3D418E;
+    font-size: 120%;
+    margin-left: 5%;
+}
+
+.timetable-subjects-line-cabinet {
+    color: #6c75ce;
+    margin-left: 38%;
+}
+
+/* progress-table*/
+
+.column-marks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    margin-top: 1%;
+    margin-bottom: 3px;
+    margin-left: 2%;
+    background-color: #b6b1f2;
+    border-radius: 10px;
+
+}
+
+.cell-column-marks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+/* own */
+
+.own-information-wide {
+    
+    position: fixed;
+    width: 100%;
+    height: 500px;
+    top: 170px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: #A0A6D8;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 140%;
+    text-align: center;
+    color: black;
+}
+
+.own-foto {
+    position: absolute;
+    align-items: center;
+    width: 890px;
+    
+}
+
+.own-information-left {    
+    position: fixed;
+    width: 35%;
+    height: 30%;
+    top: 700px;
+    left: 10%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: rgb(241, 239, 239);
+    border-radius: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 140%;
+    text-align: center;
+    color: black;
+    
+}
+
+.own-information-right {
+    position: fixed;
+    width: 35%;
+    height: 30%;
+    right: 10%;
+    top: 700px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: rgb(241, 239, 239);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 140%;
+    text-align: center;
+    color: black;
+}
+
+/* diary div table */
+
+
+
+.align-column {
+    float: left;
+    height: 6%;
+    width: 91%;
+    left: 3%; 
+    margin: 25px 0px 0px 24px;
+    background-color: #B6B1F2;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border: 5px solid #6c75ce;
+    border-bottom: none;
+}
+
+.diary-day-column {
+    border-right: 5px  solid #6c75ce;
 }
