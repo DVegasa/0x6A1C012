@@ -1,0 +1,21 @@
+.point {
+    display: flex; 
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+
+}
+
+.point-item {
+    width: 40px;
+    height: 40px;
+}
+
+.homework-item {
+    padding-top: 2%;
+}
+
+.assessment {
+    padding-bottom: 2%;
+}

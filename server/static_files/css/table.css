@@ -1,0 +1,89 @@
+table {
+    
+    border-spacing: 0px;
+    width: 100%;
+}
+
+td {
+    text-align: center;
+    font-size: 25px;
+}
+
+.table-head-item {
+    padding: 20px;
+    text-align: center;
+    font-size: 25px;
+    border-top: 5px solid #6E75CE;
+    border-left: 5px solid #6E75CE;
+    background-color: #B6B1F2;
+    
+}
+
+
+.table-head-item:first-child {
+    border-top-left-radius: 15px;
+}
+
+.table-head-item:last-child {
+    border-top-right-radius: 15px;
+    border-right: 5px solid #6E75CE;
+}
+
+.table-head-item:hover {
+    background-color: #6E75CE;
+    color: #FFF4A7;
+    cursor: pointer;
+}
+
+.table-head-item:hover .item-color {
+    background-color: #6E75CE;
+    color: #FFF4A7;
+    cursor: pointer;
+}
+
+.item-color {
+    color: #6E75CE;
+}
+
+.head-active {
+    background-color: #6E75CE;
+    color: #FFF4A7;
+}
+
+
+
+.main-table-lessons {
+    border-collapse: collapse;
+}
+
+.homework-item {
+    border: 5px solid #6E75CE;
+}
+
+.subject {
+    position: relative;
+    padding: 40px;
+    width: 250px;
+    background-color: #F5F5FF;
+}
+
+.subject-time {
+    position: absolute;
+    font-size: 20px;
+    color: #B6B1F2;
+    top: 10px;
+    left: 70px;
+}
+
+.subject-nam {
+    position: absolute;
+    font-size: 20px;
+    color: #6E75CE;
+    top: 40%;
+    left: 10px;
+}
+
+.assessment {
+    width: 100px;
+    background-color: #FFF4A7;
+}

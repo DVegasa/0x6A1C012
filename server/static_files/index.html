@@ -1,139 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЭЖД</title>
-    <link rel="stylesheet" href="css/style.css"> 
-    <link rel="stylesheet" href="css/main.css"/>
-    <script src="js/modernizr.js"></script> <!-- Modernizr -->
-    
-    <meta name="viewport" content="widht=device-widht">
-
-    <!-- Bootstrap-4 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/timetable.css">
+    <link rel="stylesheet" href="css/login.css">
+    <!-- свайпер -->
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+  	<script src="js/swiper-bundle.min.js"></script>
+    <!-- окно логина -->
+    <script src="js/login.js"></script>
+    <title>Дневник lite</title>
 </head>
-<header class="header" role="banner">
-    <div class="container">
-        <div class="header-burger">
-            <span></span>
-        </div>
-        <div class="main-nav ">
-             <ul class="header-nav-list">
-                <li class="header-nav-item">
-                    <a class="header-nav-link header-nav-link-own active" href="index.html" title="Главная" onclick="slowScroll ('#index')">Главная</a>
-                </li>
-                <li class="header-nav-item">
-                    <a class="header-nav-link" href="timetable.html" title="Расписание" onclick="slowScroll ('#timetable')">Расписание</a>
-                </li>
-                <li class="header-nav-item">
-                    <a class="header-nav-link" href="diary.html" title="Дневник" onclick="slowScroll ('#diary')">Дневник</a>
-                </li>
-                <li class="header-nav-item">
-                    <a class="header-nav-link" href="progress.html" title="Успеваемость" onclick="slowScroll ('#progress')">Успеваемость</a>
-                </li>
-                
-                <div class="bell">
-                    <img src="img/колокол.png" alt="">
-                </div>
-                <div class="gear">
-                    <img src="img/шестерня).png" alt="">
-                </div>
-                <li>
-                    <a class="header-btn cd-signin" href="#0">Личный кабинет</a>
-                </li>
-            </ul>
-            
-        </div>
-
-    </div>
-</header>
 <body>
-    <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
-       	<div class="cd-user-modal-container"> <!-- this is the container wrapper -->
-            <ul class="cd-switcher">
-                <li><a href="#0">Авторизация</a></li>
-                
-            </ul>
-
-            <div id="cd-login"> <!-- log in form -->
-                <form class="cd-form">
-                    <p class="fieldset">
-                        <label class="image-replace cd-email" for="signin-email">E-mail</label>
-                        <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
-                        <span class="cd-error-message">Допущена ошибка!</span>
-                    </p>
-
-                    <p class="fieldset">
-                        <label class="image-replace cd-password" for="signin-password">Пароль</label>
-                        <input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Пароль">
-                        <a href="#0" class="hide-password">скрыть</a>
-                        <span class="cd-error-message">Допущена ошибка!</span>
-                    </p>
-
-                    <p class="fieldset">
-                        <input class="remember-me" type="checkbox" id="remember-me" checked>
-                        <label for="remember-me">Запомнить меня</label>
-                    </p>
-
-                    <p class="fieldset">
-                        <input class="full-width include" type="submit" value="Войти">
-                    </p>
-                </form>
-                
-                <p class="cd-form-bottom-message"><a href="#0">Забыли свой пароль?</a></p>
-                <!-- <a href="#0" class="cd-close-form">Close</a> -->
-            </div> <!-- cd-login -->
-
+    <header class="header">
+        <div class="content header-blok">
+            <nav class="header-nav">
+                <ul class="header-nav-list">
+                    <li class="header-nav-item active-list">
+                        <a href="index.html" class="header-nav-link">Главная</a>
+                    </li>
+                    <li class="header-nav-item">
+                        <a href="timetable.html" class="header-nav-link">Расписание</a>
+                    </li>
+                    <li class="header-nav-item">
+                        <a href="diary-monday.html" class="header-nav-link">Дневник</a>
+                    </li>
+                    <li class="header-nav-item">
+                        <a href="progress-year.html" class="header-nav-link">Успеваемость</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- <div class="header-options">
+                <div class="header-options-notice"></div>
+                <div class="header-options-configure"></div>
+            </div> -->
+            <a href="#" class="header_account" id="login">Личный<br>кабинет</a>
+        </div>    
+    </header>
+    <div class="back-block"></div>
+    
+    <main class="main">
+        
+        <!-- Slider main container -->
+        <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide"><img  src="img/news_1.png" alt="новасть" class="news_1"></div>
+            <div class="swiper-slide"><img  src="img/advertising.jpg" alt="новасть" class="news_2"> </div>
             
-
-            <div id="cd-reset-password"> <!-- reset password form -->
-                <p class="cd-form-message">Вы потеряли пароль? Пожалуйста, введите свой адрес электронной почты. Вы получите ссылку для создания нового пароля.</p>
-
-                <form class="cd-form">
-                    <p class="fieldset">
-                        <label class="image-replace cd-email" for="reset-email">E-mail</label>
-                        <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
-                        <span class="cd-error-message">Допущена ошибка!</span>
-                    </p>
-
-                    <p class="fieldset">
-                        <input class="full-width has-padding" type="submit" value="Сбросить пароль">
-                    </p>
-                </form>
-
-                <p class="cd-form-bottom-message"><a href="#0">Вернуться к регистрации</a></p>
-            </div> <!-- cd-reset-password -->
-            <a href="#0" class="cd-close-form">Закрыть</a>
-        </div> <!-- cd-user-modal-container -->
-    </div> <!-- cd-user-modal -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/main.js"></script> <!-- Gem jQuery -->
-
-    <div class="own-information-wide">
-        <div class="own-foto">
-            <img src="img/advertising.jpg" alt="">
+            ...
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+        
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        
+            <!-- If we need scrollbar -->
+            <div class="swiper-scrollbar"></div>
         </div>
-    </div>
-    <div class="own-information-left">
-        В Петегбурге перевели более 25 школ на дистанционное обучение из-за короновируса
-    </div>
-    <div class="own-information-right">
-        Власти ожидают "Непростой март" по карантину школах Петербурга
-    </div>
 
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        function slowScroll (id) {
-            $("html,body").animate({
-                scrollTop: $(id).offset.top
-            
-            },500);
-        }
-    
-    
-    </script>
+        <script src="../package/swiper-bundle.min.js"></script>
+			
+		<!-- Initialize Swiper -->
+		<script>
+			var swiper = new Swiper('.swiper-container', {
+				cssMode: true,
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev',
+				},
+				pagination: {
+					el: '.swiper-pagination'
+				},
+				mousewheel: true,
+				keyboard: true,
+			});
+		</script>
+        
+        <div class="content">
+            <section class="short_news">
+                <div class="short_news-item">
+                    <p>В Петербурге 25 школ перевели на дистанционку из-за короновируса</p>
+                </div>
+                <div class="short_news-item">
+                    <p>В Петербурге 25 школ перевели на дистанционку из-за короновируса</p>
+                </div>
+            </section>
+        </div>
+    </main>
 </body>
 </html>

@@ -1,0 +1,69 @@
+.main-blok-timetable {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+ .timetable-item {
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+    width: 250px;
+    height: 380px;
+    border: 5px solid #6E75CE;
+    border-radius: 15px;
+}
+
+
+.timetable-item:not(:nth-child(3n)) {
+    margin-right: 40px;
+}
+
+.timetable-item-day {
+    padding: 5px 0;
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 140%;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    background-color: #b6b1f2;
+}
+
+.timetable-item-subject {
+    margin: 5px;
+    border-bottom: 3px solid #CBCEF2;
+    font-weight: bold;
+} 
+
+.timetable-subjects-line {
+    display: flex;  
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.timetable-subjects-line-number {
+    color: #6E75CE;
+    font-size: 110%;
+}
+
+.time-subject {
+    margin-bottom: -5px;
+    text-align: center;
+    font-size: 14px;
+    color: #B6B1F2;
+}
+
+
+
+.timetable-subjects-line-subject {
+    color: #3D418E;
+    font-size: 110%;
+    
+}
+
+.timetable-subjects-line-cabinet {
+    color: #6c75ce;
+    font-size: 90%;
+}
