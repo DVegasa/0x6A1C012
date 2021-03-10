@@ -22,6 +22,8 @@ async fn main() -> std::io::Result<()> {
     pretty_env_logger::init();
 
     let domain: String = std::env::var("DOMAIN").unwrap_or_else(|_| "localhost".to_string());
+    let d2 = domain.clone();
+    let port: String = dotenv::var("PORT").unwrap_or_else(|_| "3000".to_string());
 
     // Init mongodb
     let db_conn = Connection::new().await;
@@ -35,29 +37,28 @@ async fn main() -> std::io::Result<()> {
                 CookieIdentityPolicy::new(utils::SECRET_KEY.as_bytes())
                     .name("auth")
                     .path("/")
-                    .domain(domain.as_str())
+                    .domain(d2.as_str())
                     .max_age(86400) // one day in seconds
                     .secure(false), // this can only be true if you have https
             ))
             .data(web::JsonConfig::default().limit(4096))
-        .service(
-            web::scope("/api")
-                .service(
-                    web::resource("/auth")
-                        .route(web::post().to(crate::handlers::api::auth::handler::login))
-                        .route(web::delete().to(crate::handlers::api::auth::handler::logout))
-                        .route(web::get().to(crate::handlers::api::auth::handler::get_me)),
-                )
-                .service(
-                    web::resource("/schedule").route(
-                        web::get()
-                            .to(crate::handlers::api::schedule::get_schedule_handler::get_schedule),
+            .service(
+                web::scope("/api")
+                    .service(
+                        web::resource("/auth")
+                            .route(web::post().to(crate::handlers::api::auth::handler::login))
+                            .route(web::delete().to(crate::handlers::api::auth::handler::logout))
+                            .route(web::get().to(crate::handlers::api::auth::handler::get_me)),
+                    )
+                    .service(
+                        web::resource("/schedule").route(web::get().to(
+                            crate::handlers::api::schedule::get_schedule_handler::get_schedule,
+                        )),
                     ),
-                ),
-            // .service(web::resource("/user").route(web::post().to(unimplemented!()))),
-        )
+                // .service(web::resource("/user").route(web::post().to(unimplemented!()))),
+            )
     })
-    .bind("127.0.0.1:3000")?
+    .bind(format!("{}:{}", domain, port))?
     .run()
     .await
 }
